@@ -9,6 +9,7 @@
 /* import-globals-from ../../components/customizableui/content/panelUI.js */
 /* import-globals-from ../../components/preferences/preferencesTab.js */
 /* import-globals-from glodaFacetTab.js */
+/* import-globals-from glodaListTab.js */
 /* import-globals-from mailCore.js */
 /* import-globals-from mail-offline.js */
 /* import-globals-from mailTabs.js */
@@ -158,8 +159,9 @@ var gMailInit = {
     if (tabmail) {
       // mailTabType is defined in mailTabs.js
       tabmail.registerTabType(mailTabType);
-      // glodaFacetTab* in glodaFacetTab.js
+      // glodaFacetTab* in glodaFacetTab.js, glodaTableListTabType in glodaListTab.js
       tabmail.registerTabType(glodaFacetTabType);
+      tabmail.registerTabType(glodaTableListTabType);
       tabmail.registerTabMonitor(GlodaSearchBoxTabMonitor);
       tabmail.openFirstTab();
       setupShortcuts();
@@ -481,7 +483,7 @@ async function selectFirstFolder() {
   let startFolderURI = null;
   let startMsgHdr = null;
 
-  if ("arguments" in window && window.arguments.length > 0) {
+  if ("arguments" in window && window.arguments.length) {
     let arg0 = window.arguments[0];
     // If the argument is a string, it is folder URI.
     if (typeof arg0 == "string") {
@@ -920,8 +922,7 @@ var CustomTitlebar = {
       return;
     }
 
-    let allowed =
-      this.systemSupported && Object.keys(this._disallowed).length == 0;
+    let allowed = this.systemSupported && !Object.keys(this._disallowed).length;
 
     if (
       document.documentElement.getAttribute("chromehidden")?.includes("toolbar")

@@ -86,6 +86,7 @@ Preferences.addAll([
   { id: "font.language.group", type: "string" },
   { id: "intl.regional_prefs.use_os_locales", type: "bool" },
   { id: "mailnews.database.global.indexer.enabled", type: "bool" },
+  { id: "gloda.show_as_list_by_default", type: "bool" },
   { id: "mailnews.labels.description.1", type: "wstring" },
   { id: "mailnews.labels.color.1", type: "string" },
   { id: "mailnews.labels.description.2", type: "wstring" },
